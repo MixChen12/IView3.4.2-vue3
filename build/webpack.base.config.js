@@ -12,14 +12,12 @@ function resolve (dir) {
 module.exports = {
     // 加载器
     module: {
-        // https://doc.webpack-china.org/guides/migrating/#module-loaders-module-rules
         rules: [
             {
-                // https://vue-loader.vuejs.org/en/configurations/extract-css.html
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    loaders: {
+                    use: {
                         css: [
                             'vue-style-loader',
                             {
@@ -61,7 +59,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loaders: [
+                use: [
                     {
                         loader: 'style-loader',
                         options: {
@@ -81,7 +79,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loaders: [
+                use: [
                     {
                         loader: 'style-loader',
                         options: {
@@ -104,7 +102,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: [
+                use: [
                     {
                         loader: 'style-loader',
                         options: {
@@ -127,7 +125,10 @@ module.exports = {
             },
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: 'url-loader?limit=8192'
+                loader: 'url-loader',
+                options: {
+                    limit: 8192
+                },
             },
             {
                 test: /\.(html|tpl)$/,
