@@ -33,6 +33,6 @@ module.exports = merge(webpackBaseConfig, {
             'process.env': {
                 NODE_ENV: '"production"'
             }
-        })
+        }),
     ]
 });

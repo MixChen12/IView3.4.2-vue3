@@ -1,20 +1,23 @@
 <template>
-    <div class="ivu-cell-group">
-        <slot></slot>
-    </div>
+  <div class="ivu-cell-group">
+    <slot></slot>
+  </div>
 </template>
+
 <script>
-    export default {
-        name: 'CellGroup',
-        provide () {
-            return {
-                cellGroup: this
-            };
-        },
-        methods: {
-            handleClick (name) {
-                this.$emit('on-click', name);
-            }
-        }
-    };
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
+export default {
+  name: 'CellGroup',
+  provide() {
+    return {
+      cellGroup: this,
+    }
+  },
+  methods: {
+    handleClick(name) {
+      $emit(this, 'on-click', name)
+    },
+  },
+  emits: ['on-click'],
+}
 </script>

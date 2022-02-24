@@ -12,45 +12,45 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 
 
 module.exports = merge(webpackBaseConfig, {
-    devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
 
-    // 入口
-    entry: {
-        main: './examples/main',
-        vendors: ['vue', 'vue-router']
-    },
-    // 输出
-    output: {
-        path: path.join(__dirname, '../examples/dist'),
-        publicPath: '',
-        filename: '[name].js',
-        chunkFilename: '[name].chunk.js'
-    },
-    resolve: {
-        alias: {
-            iview: '../../src/index',
-            vue: 'vue/dist/vue.esm.js'
-            // vue: 'vue/dist/vue.runtime.js'
+  // 入口
+  entry: {
+    main: './examples/main',
+    vendors: ['vue', 'vue-router']
+  },
+  // 输出
+  output: {
+    path: path.join(__dirname, '../examples/dist'),
+    publicPath: '',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js'
+  },
+  resolve: {
+    alias: {
+      iview: '../../src/index',
+      vue: '@vue/compat'
+      // vue: 'vue/dist/vue.runtime.js'
+    }
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'vendor',
+          chunks: 'initial',
+          minChunks: 2
         }
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: 'vendor',
-                    chunks: 'initial',
-                    minChunks: 2
-                }
-            }
-        }
-    },
-    plugins: [
-        // new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
-        new HtmlWebpackPlugin({
-            inject: true,
-            filename: path.join(__dirname, '../examples/dist/index.html'),
-            template: path.join(__dirname, '../examples/index.html')
-        })
-        // new FriendlyErrorsPlugin()
-    ]
+      }
+    }
+  },
+  plugins: [
+    // new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      filename: path.join(__dirname, '../examples/dist/index.html'),
+      template: path.join(__dirname, '../examples/index.html')
+    })
+    // new FriendlyErrorsPlugin()
+  ]
 });
