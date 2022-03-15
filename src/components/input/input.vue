@@ -80,6 +80,9 @@
         @compositionend="handleComposition"
         @input="handleInput"
         @change="handleChange"
+        @click="handleClick"
+        @mouseenter="handleMouseenter"
+        @mouseleave="handleMouseleave"
       />
       <div
         :class="[prefixCls + '-group-append']"
@@ -132,6 +135,9 @@
       @compositionupdate="handleComposition"
       @compositionend="handleComposition"
       @input="handleInput"
+      @click="onClick"
+      @mouseenter="handleMouseenter"
+      @mouseleave="handleMouseleave"
     >
     </textarea>
   </div>
@@ -327,6 +333,18 @@ export default {
     handleFocus(event) {
       $emit(this, 'on-focus', event)
     },
+    handleClick(event) {
+      $emit(this, 'on-click', event)
+      $emit(this, 'click', event)
+    },
+    handleMouseenter(event) {
+      $emit(this, 'on-mouseenter', event)
+      $emit(this, 'mouseenter', event)
+    },
+    handleMouseleave(event) {
+      $emit(this, 'on-mouseleave', event)
+      $emit(this, 'mouseleave', event)
+    },
     handleBlur(event) {
       $emit(this, 'on-blur', event)
       if (
@@ -457,6 +475,11 @@ export default {
     'on-change',
     'on-input-change',
     'on-clear',
+    'click',
+    'on-mouseenter',
+    'mouseenter',
+    'on-mouseenter',
+    'mouseleave'
   ],
 }
 </script>

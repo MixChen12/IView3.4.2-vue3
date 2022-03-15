@@ -16,7 +16,7 @@
           :value="data.checked"
           :indeterminate="data.indeterminate"
           :disabled="data.disabled || data.disableCheckbox"
-          @click.prevent="handleCheck"
+          @click="handleCheck"
         ></Checkbox>
         <Render
           v-if="data.render"
@@ -33,14 +33,15 @@
         <span v-else :class="titleClasses" @click="handleSelect">{{
           data.title
         }}</span>
-        <template v-for="(item, i) in children">
+        <template v-if="data.expand">
           <Tree-node
-            v-if="data.expand"
+            v-for="(item, i) in children"
             :appear="appearByClickArrow"
             :data="item"
             :multiple="multiple"
             :show-checkbox="showCheckbox"
             :children-key="childrenKey"
+            :key="i"
           >
           </Tree-node>
         </template>
@@ -240,5 +241,6 @@ export default {
       this.dispatch('Tree', 'on-check', changes)
     },
   },
+  emits: [ 'on-check' ]
 }
 </script>

@@ -13,6 +13,7 @@
         @change="change"
         @focus="onFocus"
         @blur="onBlur"
+        @click="onClick"
       />
       <input
         v-else
@@ -24,6 +25,7 @@
         @change="change"
         @focus="onFocus"
         @blur="onBlur"
+        @click="onClick"
       />
     </span>
     <slot
@@ -162,10 +164,15 @@ export default {
     },
     onBlur() {
       this.focusInner = false
+      $emit(this, 'blur')
     },
     onFocus() {
       this.focusInner = true
+      $emit(this, 'focus')
     },
+    onClick() {
+      $emit(this, 'click')
+    }
   },
   watch: {
     value(val) {
@@ -176,6 +183,6 @@ export default {
       }
     },
   },
-  emits: ['update:value', 'on-change'],
+  emits: ['update:value', 'on-change', 'click', 'focus', 'blur'],
 }
 </script>
