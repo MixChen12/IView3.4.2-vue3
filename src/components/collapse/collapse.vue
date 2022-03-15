@@ -60,8 +60,6 @@ export default {
       if (!Array.isArray(activeKey)) {
         activeKey = [activeKey]
       }
-      console.log(accordion)
-      console.log(activeKey)
       if (accordion && activeKey.length > 1) {
         activeKey = [activeKey[0]]
       }

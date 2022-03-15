@@ -2,7 +2,7 @@ import * as Vue from 'vue'
 import { addClass, removeClass } from '../../utils/assist'
 
 const Transition = {
-  beforeEnter(el) {
+  onBeforeEnter(el) {
     addClass(el, 'collapse-transition')
     if (!el.dataset) el.dataset = {}
 
@@ -14,7 +14,7 @@ const Transition = {
     el.style.paddingBottom = 0
   },
 
-  enter(el) {
+  onEnter(el) {
     el.dataset.oldOverflow = el.style.overflow
     if (el.scrollHeight !== 0) {
       el.style.height = el.scrollHeight + 'px'
@@ -29,14 +29,14 @@ const Transition = {
     el.style.overflow = 'hidden'
   },
 
-  afterEnter(el) {
+  onAfterEnter(el) {
     // for safari: remove class then reset height is necessary
     removeClass(el, 'collapse-transition')
     el.style.height = ''
     el.style.overflow = el.dataset.oldOverflow
   },
 
-  beforeLeave(el) {
+  onBeforeLeave(el) {
     if (!el.dataset) el.dataset = {}
     el.dataset.oldPaddingTop = el.style.paddingTop
     el.dataset.oldPaddingBottom = el.style.paddingBottom
@@ -46,7 +46,7 @@ const Transition = {
     el.style.overflow = 'hidden'
   },
 
-  leave(el) {
+  onLeave(el) {
     if (el.scrollHeight !== 0) {
       // for safari: add class after set height, or it will jump to zero height suddenly, weired
       addClass(el, 'collapse-transition')
@@ -56,7 +56,7 @@ const Transition = {
     }
   },
 
-  afterLeave(el) {
+  onAfterLeave(el) {
     removeClass(el, 'collapse-transition')
     el.style.height = ''
     el.style.overflow = el.dataset.oldOverflow
@@ -74,11 +74,9 @@ export default function render(_props, _context) {
   }
   const { children, props } = context
   const data = {
-    on: Transition,
-    props: {
-      appear: props.appear,
-    },
+    ...Transition,
+    appear: props.appear,
   }
 
-  return Vue.h('transition', data, children)
+  return Vue.h(Vue.Transition, data, children)
 }

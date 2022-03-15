@@ -304,7 +304,6 @@ export default {
       query: '',
       initialLabel: this.label,
       hasMouseHoverHead: false,
-      slotOptions: this.$slots.default && this.$slots.default(),
       caretPosition: -1,
       lastRemoteQuery: '',
       unchangedQuery: true,
@@ -314,6 +313,9 @@ export default {
     }
   },
   computed: {
+    slotOptions() {
+      return this.$slots.default && this.$slots.default()
+    },
     classes() {
       return [
         `${prefixCls}`,
@@ -404,9 +406,10 @@ export default {
         const copyChildren = (node, fn) => {
           return {
             ...node,
-            children: (node.children || [])
-              .map(fn)
-              .map((child) => copyChildren(child, fn)),
+            children: Array.isArray(node.children) ?
+              node.children.map(fn)
+                .map((child) => copyChildren(child, fn))
+              : node.children
           }
         }
         const autoCompleteOptions = extractOptions(slotOptions)
@@ -935,6 +938,7 @@ export default {
     'on-query-change',
     'on-open-change',
     'on-clear',
+    'on-select-selected'
   ],
 }
 </script>

@@ -39,7 +39,6 @@ export default {
       styles: {
         minWidth: '0',
         zIndex: '1060',
-        width: '0'
       }
     }
   },

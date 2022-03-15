@@ -10,18 +10,22 @@
             <Collapse accordion v-model:value="value4">
               <Panel name="1-1">
                 iPhone
-                <p slot="content">
-                  iPhone，是美国苹果公司研发的智能手机，它搭载iOS操作系统。第一代iPhone于2007年1月9日由苹果公司前首席执行官史蒂夫·乔布斯发布，并在2007年6月29日正式发售。
-                </p>
+                <template v-slot:content>
+                  <p>
+                    iPhone，是美国苹果公司研发的智能手机，它搭载iOS操作系统。第一代iPhone于2007年1月9日由苹果公司前首席执行官史蒂夫·乔布斯发布，并在2007年6月29日正式发售。
+                  </p>
+                </template>
               </Panel>
               <Panel name="1-2">
                 iPad
-                <p slot="content">
-                  iPad是由苹果公司于2010年开始发布的平板电脑系列，定位介于苹果的智能手机iPhone和笔记本电脑产品之间，（屏幕中有4个虚拟程序固定栏）与iPhone布局一样，提供浏览网站、收发电子邮件、观看电子书、播放音频或视频、玩游戏等功能。由英国出生的设计主管乔纳森·伊夫（Jonathan
-                  Ive）（有些翻译为
-                  乔纳森·艾维）领导的团队设计的，这个圆滑、超薄的产品反映出了伊夫对德国天才设计师Dieter
-                  Rams的崇敬之情。
-                </p>
+                <template v-slot:content>
+                  <p>
+                    iPad是由苹果公司于2010年开始发布的平板电脑系列，定位介于苹果的智能手机iPhone和笔记本电脑产品之间，（屏幕中有4个虚拟程序固定栏）与iPhone布局一样，提供浏览网站、收发电子邮件、观看电子书、播放音频或视频、玩游戏等功能。由英国出生的设计主管乔纳森·伊夫（Jonathan
+                    Ive）（有些翻译为
+                    乔纳森·艾维）领导的团队设计的，这个圆滑、超薄的产品反映出了伊夫对德国天才设计师Dieter
+                    Rams的崇敬之情。
+                  </p>
+                </template>
               </Panel>
             </Collapse>
           </div>

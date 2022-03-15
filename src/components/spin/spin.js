@@ -10,54 +10,27 @@ function handleGetIndex() {
   return transferIndex
 }
 
+const genContainer = () => {
+  return document.createElement('div')
+}
+
 let tIndex = handleGetIndex()
 
 Spin.newInstance = (properties) => {
-  const _props = properties || {}
+  const _props = Object.assign(properties || {}, {
+    fix: true,
+    fullscreen: true,
+    size: 'large'
+  })
 
-  const Instance = {
-    data: Object.assign({}, _props, {}),
-    render() {
-      let vnode = ''
-      if (this.render) {
-        vnode = Vue.h(
-          Spin,
-          plantRenderPara({
-            props: {
-              fix: true,
-              fullscreen: true,
-            },
-          }),
-          [this.render(Vue.h)]
-        )
-      } else {
-        vnode = Vue.h(
-          Spin,
-          plantRenderPara({
-            props: {
-              size: 'large',
-              fix: true,
-              fullscreen: true,
-            },
-          })
-        )
-      }
-      return Vue.h(
-        'div',
-        plantRenderPara({
-          class: 'ivu-spin-fullscreen ivu-spin-fullscreen-wrapper',
-          style: {
-            'z-index': 2010 + tIndex,
-          },
-        }),
-        [vnode]
-      )
-    },
-  }
+  const container = genContainer()
+  container.className = 'ivu-spin-fullscreen ivu-spin-fullscreen-wrapper'
+  container.style.zIndex = 2010 + tIndex
+  document.body.appendChild(container)
+  const vnode = Vue.h(Spin, _props)
+  Vue.render(vnode, container)
 
-  const component = Instance.$mount()
-  document.body.appendChild(component.$el)
-  const spin = $children(Instance)[0]
+  const spin = vnode.component.data
 
   return {
     show() {
@@ -67,7 +40,7 @@ Spin.newInstance = (properties) => {
     remove(cb) {
       spin.visible = false
       setTimeout(function () {
-        spin.$parent.$destroy()
+        // spin.$parent.$destroy()
         if (
           document.getElementsByClassName('ivu-spin-fullscreen')[0] !==
           undefined

@@ -10,9 +10,12 @@
         <p>总为浮云能蔽日，长安不见使人愁。</p>
       </article>
       <Spin size="large" fix v-if="spinShow">
-        <!--<Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>-->
-        <!--<div>Loading</div>-->
+        <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
+        <div>Loading</div>
       </Spin>
+        <!-- <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon> -->
+        <!--<div>Loading</div>-->
+      <!-- </Spin> -->
     </div>
     <br />
     切换显示状态：<i-switch @on-change="spinShow = !spinShow"></i-switch>

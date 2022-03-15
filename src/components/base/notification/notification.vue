@@ -15,6 +15,7 @@
       :name="notice.name"
       :transition-name="notice.transitionName"
       :on-close="notice.onClose"
+      :visible="notice.visible"
     >
     </Notice>
   </div>
@@ -100,9 +101,9 @@ export default {
     },
     close(name) {
       const notices = this.notices
-      for (let i = 0; i < notices.length; i++) {
+      for (let i = notices.length - 1; i >= 0; i--) {
         if (notices[i].name === name) {
-          this.notices.splice(i, 1)
+          this.notices[i].visible = false
           break
         }
       }

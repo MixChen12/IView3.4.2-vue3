@@ -1,17 +1,25 @@
 <template>
-  <Transfer
-    :data="data3"
-    :target-keys="targetKeys3"
-    :list-style="listStyle"
-    :render-format="render3"
-    :operations="['To left', 'To right']"
-    filterable
-    @on-change="handleChange3"
-  >
-    <div :style="{ float: 'right', margin: '5px' }">
-      <Button type="ghost" size="small" @click="reloadMockData">Refresh</Button>
-    </div>
-  </Transfer>
+  <div>
+    <Transfer
+      :data="data3"
+      :target-keys="targetKeys3"
+      :list-style="listStyle"
+      :render-format="render3"
+      :operations="['To left', 'To right']"
+      filterable
+      @on-change="handleChange3"
+    >
+      <div :style="{ float: 'right', margin: '5px' }">
+        <Button type="ghost" size="small" @click="reloadMockData">Refresh</Button>
+      </div>
+    </Transfer>
+    <Transfer
+      :data="data4"
+      :target-keys="targetKeys4"
+      :render-format="render4"
+      @on-change="handleChange4">
+    </Transfer>
+  </div>
 </template>
 
 <script>
@@ -24,6 +32,8 @@ export default {
         width: '250px',
         height: '300px',
       },
+      data4: this.getMockData(),
+      targetKeys4: this.getTargetKeys()
     }
   },
   methods: {
@@ -54,6 +64,12 @@ export default {
       this.data3 = this.getMockData()
       this.targetKeys3 = this.getTargetKeys()
     },
+    handleChange4 (newTargetKeys) {
+      this.targetKeys4 = newTargetKeys;
+    },
+    render4 (item) {
+      return item.label + ' - ' + item.description;
+    }
   },
 }
 </script>

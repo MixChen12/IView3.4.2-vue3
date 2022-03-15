@@ -29,14 +29,14 @@ export default {
       return cloned
     }
 
-    const vNodes =
-      (this.$slots.default && this.$slots.default()) === undefined
-        ? []
-        : this.$slots.default && this.$slots.default()
-    const clonedVNodes =
-      (this.$slots.default && this.$slots.default()) === undefined
-        ? []
-        : vNodes.map((vnode) => cloneVNode(vnode))
+    const vNodes = []
+      // (this.$slots.default && this.$slots.default()) === undefined
+      //   ? []
+      //   : this.$slots.default && this.$slots.default()
+    const clonedVNodes = []
+      // (this.$slots.default && this.$slots.default()) === undefined
+      //   ? []
+      //   : vNodes.map((vnode) => cloneVNode(vnode))
 
     return Vue.h(
       'div',
