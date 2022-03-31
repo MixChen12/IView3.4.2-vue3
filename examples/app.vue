@@ -45,6 +45,7 @@
         <li><router-link to="/table">Table</router-link></li>
         <li><router-link to="/loading-bar">LoadingBar</router-link></li>
         <li><router-link to="/modal">Modal</router-link></li>
+        <li><router-link to="/more">More</router-link></li>
         <li><router-link to="/message">Message</router-link></li>
         <li><router-link to="/notice">Notice</router-link></li>
         <li><router-link to="/avatar">Avatar</router-link></li>

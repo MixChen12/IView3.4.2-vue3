@@ -7,7 +7,7 @@
         :prefix-cls="prefixCls"
         :data="item"
         :tmp-item="tmpItem"
-        @click.stop="handleClickItem(item)"
+        @click="handleClickItem(item)"
         @mouseenter.stop="handleHoverItem(item)"
       ></Casitem>
     </ul>
@@ -144,9 +144,12 @@ export default {
     },
     emitUpdate(result) {
       if (this.$parent.$options.name === 'Caspanel') {
-        this.$parent.updateResult(result)
+        // this.$parent.updateResult(result)
+        $emit(this.$parent, 'updateResult', result)
       } else {
-        this.$parent.$parent.updateResult(result)
+        // this.$parent.$parent.updateResult(result)
+        $emit(this.$parent.$parent, 'updateResult', result)
+
       }
     },
     getKey() {
@@ -183,6 +186,7 @@ export default {
         }
       }
     })
+    $on(this, 'updateResult', this.updateResult)
   },
   emits: ['on-clear'],
 }

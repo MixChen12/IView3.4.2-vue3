@@ -9,6 +9,11 @@ import iView from '../src/index'
 // import locale from '../src/locale/lang/en-US';
 import locale from '../src/locale/lang/zh-CN'
 
+Vue.configureCompat({
+  WATCH_ARRAY: false,
+  COMPONENT_ASYNC: false
+})
+
 window.$vueApp = Vue.createApp(App)
 
 window.$vueApp.use(iView, {
@@ -190,6 +195,10 @@ const router = VueRouter.createRouter({
     {
       path: '/modal',
       component: () => import('./routers/modal.vue'),
+    },
+    {
+      path: '/more',
+      component: () => import('./routers/more.vue'),
     },
     {
       path: '/message',

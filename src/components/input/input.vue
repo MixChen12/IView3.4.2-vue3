@@ -478,7 +478,7 @@ export default {
     'click',
     'on-mouseenter',
     'mouseenter',
-    'on-mouseenter',
+    'on-mouseleave',
     'mouseleave'
   ],
 }

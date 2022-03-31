@@ -1,6 +1,6 @@
 <template>
   <div style="margin: 100px">
-    <!-- <Select
+    <Select
       v-model="model1"
       filterable
       style="width: 200px"
@@ -108,9 +108,9 @@
       <Option v-for="item in cityList" :value="item.value" :key="item.value">{{
         item.label
       }}</Option>
-    </Select> -->
+    </Select>
 
-    <!-- <Select
+    <Select
       size="large"
       v-model="model10"
       multiple
@@ -120,16 +120,16 @@
       <Option v-for="item in cityList" :value="item.value" :key="item.value" :disabled="item.disabled">{{
         item.label
       }}</Option>
-    </Select> -->
+    </Select>
 
-    <Select v-model="model7" style="width:200px">
+    <!-- <Select v-model="model7" style="width:200px">
         <OptionGroup label="Hot Cities">
-            <Option v-for="item in cityList1" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Option v-for="item in cityList1" :value="item.value" :key="item.value" :disabled="item.disabled">{{ item.label }}</Option>
         </OptionGroup>
         <OptionGroup label="Other Cities">
             <Option v-for="item in cityList2" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </OptionGroup>
-    </Select>
+    </Select> -->
   </div>
 </template>
 
@@ -169,7 +169,8 @@ export default {
       cityList1: [
         {
           value: 'New York',
-          label: 'New York'
+          label: 'New York',
+          disabled: true
         },
         {
           value: 'London',

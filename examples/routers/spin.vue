@@ -9,10 +9,7 @@
         <p>三山半落青天外，二水中分白鹭洲。</p>
         <p>总为浮云能蔽日，长安不见使人愁。</p>
       </article>
-      <Spin size="large" fix v-if="spinShow">
-        <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
-        <div>Loading</div>
-      </Spin>
+      <Spin fix v-if="spinShow"></Spin>
         <!-- <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon> -->
         <!--<div>Loading</div>-->
       <!-- </Spin> -->

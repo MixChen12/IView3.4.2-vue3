@@ -5,6 +5,10 @@
     @dragstart="onDrag($event, row._index)"
     @drop="onDrop($event, row._index)"
     @dragover="allowDrop($event)"
+    @mouseenter.stop="handleMouseIn(row._index)"
+    @mouseleave.stop="handleMouseOut(row._index)"
+    @click="clickCurrentRow(row._index)"
+    @dblclick.stop="dblclickCurrentRow(row._index)"
     v-if="draggable"
   >
     <slot></slot>
@@ -15,6 +19,7 @@
 </template>
 
 <script>
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 export default {
   props: {
     row: Object,
@@ -53,6 +58,19 @@ export default {
     rowClsName(_index) {
       return this.$parent.$parent.rowClassName(this.objData[_index], _index)
     },
+    handleMouseIn(index) {
+      $emit(this, 'mouseenter', index)
+    },
+    handleMouseOut(index) {
+      $emit(this, 'mouseleave', index)
+    },
+    clickCurrentRow(index) {
+      $emit(this, 'click', index)
+    },
+    dblclickCurrentRow(index) {
+      $emit(this, 'dblclick', index)
+    },
   },
+  emits: [ 'mouseenter', 'mouseleave', 'click', 'dblclick' ]
 }
 </script>

@@ -68,6 +68,7 @@
                 v-for="(item, index) in querySelections"
                 @click="handleSelectItem(index)"
                 v-html="item.display"
+                :key="index"
               ></li>
             </ul>
           </div>
@@ -448,6 +449,7 @@ export default {
     })
   },
   mounted() {
+    $on(this, 'updateResult', this.updateResult)
     this.updateSelected(true)
   },
   watch: {

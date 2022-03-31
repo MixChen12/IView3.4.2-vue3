@@ -12,10 +12,10 @@
           :draggable="draggable"
           :row="row"
           :prefix-cls="prefixCls"
-          @mouseenter.stop="handleMouseIn(row._index)"
-          @mouseleave.stop="handleMouseOut(row._index)"
+          @mouseenter="handleMouseIn(row._index)"
+          @mouseleave="handleMouseOut(row._index)"
           @click="clickCurrentRow(row._index)"
-          @dblclick.stop="dblclickCurrentRow(row._index)"
+          @dblclick="dblclickCurrentRow(row._index)"
         >
           <td v-for="column in columns" :class="alignCls(column, row)">
             <table-cell

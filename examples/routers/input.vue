@@ -141,7 +141,7 @@
   <!--</div>-->
   <div style="width: 200px">
     <Input
-      v-model="value7"
+      v-model:value="value7"
       type="textarea"
       :autosize="true"
       placeholder="Enter something..."

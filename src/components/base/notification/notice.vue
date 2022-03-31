@@ -5,11 +5,11 @@
     @leave="handleLeave"
     appear
   >
-    <div :class="classes" :style="styles">
+    <div v-if="visible" :class="classes" :style="styles">
       <template v-if="type === 'notice'">
         <div :class="contentClasses" ref="content" v-html="content"></div>
         <div :class="contentWithIcon">
-          <render-cell :render="renderFunc"></render-cell>
+          <!-- <render-cell :render="renderFunc"></render-cell> -->
         </div>
         <a :class="[baseClass + '-close']" @click="close" v-if="closable">
           <i class="ivu-icon ivu-icon-ios-close"></i>
@@ -19,7 +19,7 @@
         <div :class="[baseClass + '-content']" ref="content">
           <div :class="[baseClass + '-content-text']" v-html="content"></div>
           <div :class="[baseClass + '-content-text']">
-            <render-cell :render="renderFunc"></render-cell>
+            <!-- <render-cell :render="renderFunc"></render-cell> -->
           </div>
           <a :class="[baseClass + '-close']" @click="close" v-if="closable">
             <i class="ivu-icon ivu-icon-ios-close"></i>
@@ -83,6 +83,10 @@ export default {
     transitionName: {
       type: String,
     },
+    visible: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -93,9 +97,9 @@ export default {
     baseClass() {
       return `${this.prefixCls}-notice`
     },
-    renderFunc() {
-      return this.render || function () {}
-    },
+    // renderFunc() {
+    //   return this.render || function () {}
+    // },
     classes() {
       return [
         this.baseClass,

@@ -1,5 +1,5 @@
 <template>
-  <li :class="classes">
+  <li :class="classes" @click.stop="onClick">
     {{ data.label }}
     <Icon
       :type="arrowType"
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import Icon from '../icon/icon.vue'
 
 export default {
@@ -80,6 +81,10 @@ export default {
       }
       return size
     },
+    onClick() {
+      $emit(this, 'click')
+    }
   },
+  emits: ['click']
 }
 </script>
